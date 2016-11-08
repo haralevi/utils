@@ -49,8 +49,9 @@ function resizeContainer() {
 }
 resizeContainer();
 
-wnd.onresize = function () {
+wnd.onresize = wndResize;
+function wndResize(e) {
     waitForFinalEvent(function () {
         resizeContainer();
     }, 500, 'wnd.onresize');
-};
+}
