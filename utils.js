@@ -47,7 +47,7 @@ function keyboardUp(e) {
 var container = doc.getElementsByClassName('container');
 var cellW = 260;
 
-function resizeContainer() {
+function fixLayout() {
     wndSize = getWndSize();
     wW = wndSize[0] - 20;
     hW = wndSize[1];
@@ -56,11 +56,14 @@ function resizeContainer() {
     for (var i = 0; i < container.length; i++)
         container[i].style.maxWidth = containerW + "px";
 }
-resizeContainer();
+fixLayout();
 
 wnd.onresize = wndResize;
 function wndResize(e) {
-    waitForFinalEvent(function () {
-        resizeContainer();
-    }, 300, 'wnd.onresize');
+    waitForFinalEvent(
+        function () {
+            fixLayout();
+        },
+        300,
+        'wnd.onresize');
 }
