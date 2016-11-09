@@ -11,8 +11,6 @@
         this.wW = 0;
         this.hW = 0;
 
-        // Determine proper prefix
-
         // Define option defaults
         var defaults = {
             cellW: 260,
@@ -30,6 +28,7 @@
             this.hW = this.wnd.innerHeight || this.docEl.clientHeight || this.body.clientHeight;
         }
 
+        // public methods
         Utils.prototype.fixLayout = function () {
             _getWndSize.call(this);
             this.wW -= 20;
