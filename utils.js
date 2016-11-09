@@ -1,16 +1,3 @@
-var waitForFinalEvent = (function () {
-    var timers = [];
-    return function (callback, ms, uniqueId) {
-        if (!uniqueId) {
-            uniqueId = "Don't call this twice without a uniqueId";
-        }
-        if (timers[uniqueId]) {
-            clearTimeout(timers[uniqueId]);
-        }
-        timers[uniqueId] = setTimeout(callback, ms);
-    };
-})();
-
 // Create an immediately invoked functional expression to wrap our code
 (function () {
 
@@ -48,8 +35,8 @@ var waitForFinalEvent = (function () {
             this.wW -= 20;
             var containerW = Math.floor(this.wW / this.options.cellW) * this.options.cellW;
             console.log("width:", this.wW, "height:", this.hW, "ontainerW", containerW);
-            for (var i = 0; i < container.length; i++)
-                container[i].style.maxWidth = containerW + "px";
+            for (var i = 0; i < this.options.container.length; i++)
+                this.options.container[i].style.maxWidth = containerW + "px";
         }
     };
 
@@ -64,47 +51,3 @@ var waitForFinalEvent = (function () {
         return source;
     }
 }());
-
-var container = document.getElementsByClassName('container');
-var cellW = 260;
-var utils = new Utils({
-    cellW: cellW,
-    container: container
-});
-
-utils.fixLayout();
-
-window.onresize = wndResize;
-function wndResize() {
-    waitForFinalEvent(
-        function () {
-            utils.fixLayout();
-        },
-        300,
-        'wnd.onresize');
-}
-
-function stopEvent(e) {
-    if (e.preventDefault != undefined)
-        e.preventDefault();
-    if (e.stopPropagation != undefined)
-        e.stopPropagation();
-}
-
-document.oncontextmenu = oncontextmenuOpen;
-function oncontextmenuOpen(e) {
-    var evt = new Object({keyCode: 93});
-    stopEvent(e);
-    keyboardUp(evt);
-}
-
-document.onkeydown = keyboardDown;
-function keyboardDown(e) {
-
-}
-
-document.onkeyup = keyboardUp;
-function keyboardUp(e) {
-
-}
-
