@@ -36,7 +36,15 @@
             console.log("width:", this.wW, "height:", this.hW, "ontainerW", containerW);
             for (var i = 0; i < this.options.container.length; i++)
                 this.options.container[i].style.maxWidth = containerW + "px";
-        }
+        };
+
+        Utils.prototype.getWndW = function () {
+            return this.wnd.innerWidth || this.docEl.clientWidth || this.body.clientWidth;
+        };
+
+        Utils.prototype.getWndH = function () {
+            return this.wnd.innerHeight || this.docEl.clientHeight || this.body.clientHeight;
+        };
     };
 
     // Utility method to extend defaults with user options

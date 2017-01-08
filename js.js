@@ -7,12 +7,17 @@ utils.fixLayout();
 
 window.onresize = wndResize;
 function wndResize() {
-    waitForFinalEvent(
-        function () {
-            utils.fixLayout();
-        },
-        300,
-        'wnd.onresize');
+    if (utils.wW == utils.getWndW()) {
+        // ok, no actual width resize
+    }
+    else {
+        waitForFinalEvent(
+            function () {
+                utils.fixLayout();
+            },
+            300,
+            'wnd.onresize');
+    }
 }
 
 function stopEvent(e) {
