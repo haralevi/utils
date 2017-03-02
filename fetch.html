@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Fetch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+    <style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    </style>
+</head>
+<body>
+
+<h1>Test Fetch</h1>
+<div id="imgHtml"></div>
+
+<script>
+const label = 'Test Fetch';
+console.time(label);
+fetch('https://photocentra.de/ajax/get_gallery.php', {method: 'get'})
+    .then(data => data.json())
+    .then(data => {
+        console.timeEnd(label);
+
+        const labelHtml = 'labelHtml';
+        console.time(labelHtml);
+        
+        const imgArr = data.ps.map(img => '<img src="' + img.iu + '">');
+        const imgHtml = imgArr.reduce((html, img) => html + '<br>' + img);
+        
+        document.getElementById('imgHtml').innerHTML = imgHtml;
+        console.timeEnd(labelHtml);
+    });
+</script>
+</body>
+</html>
