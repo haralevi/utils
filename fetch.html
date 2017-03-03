@@ -21,9 +21,8 @@
 <script>
 const label = 'Test Fetch';
 console.time(label);
-
 const url = 'http://api.flickr.com/services/rest/';
-fetch(url, {method: 'get'})
+fetch(url, {method: 'GET'})
     .then(data => data.json())
     .then(data => {
         console.timeEnd(label);
@@ -31,8 +30,8 @@ fetch(url, {method: 'get'})
         const labelHtml = 'labelHtml';
         console.time(labelHtml);
         
-        const imgArr = data.ps.map(img => '<img src="' + img.iu + '">');
-        const imgHtml = imgArr.reduce((html, img) => html + '<br>' + img);
+        const imgArr = data.ps.map(img => `<img src="${img.iu}">`);
+        const imgHtml = imgArr.reduce((html, img) => `${html}<br>${img}`);
         
         document.getElementById('imgHtml').innerHTML = imgHtml;
         console.timeEnd(labelHtml);
