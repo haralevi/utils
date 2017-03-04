@@ -39,10 +39,10 @@ fetch(fetchUrl, {method: 'POST', body: fetchData})
         const imgArr = data.ps.map(img => `<a href="${host}/work/${img.ip}" target="_blank"><img src="${img.iu}"></a>`);
         const imgHtml = imgArr.reduce((html, img) => `${html}<br>${img}`);
 
-        const labelHtml = 'labelHtml';
-        console.time(labelHtml);
+        const labelImgHtml = 'labelImgHtml';
+        console.time(labelImgHtml);
         document.getElementById('imgHtml').innerHTML = imgHtml;
-        console.timeEnd(labelHtml);
+        console.timeEnd(labelImgHtml);
     });
 </script>
 </body>
