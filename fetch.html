@@ -11,34 +11,36 @@
         font-size: 13px;
         line-height: 1.5;
     }
+    #imgHtml {
+    	text-align: center;
+    }
     </style>
 </head>
 <body>
 
-<h1>Test Fetch</h1>
+<h1>Javascript fetch() method</h1>
 <div id="imgHtml"></div>
 
 <script>
-const label = 'Test Fetch';
-console.time(label);
+const host = '//' + window.location.host;
+const fetchUrl = host + '/gallery';
+const fetchData = new FormData();
+fetchData.append('rate', 1);
+fetchData.append('range', 7);
+fetchData.append('page', 1);
 
-const url = 'http://api.flickr.com/services/rest/';
-var formData = new FormData();
-formData.append('rate', 1);
-formData.append('range', 7);
-formData.append('page', 1);
-    
-fetch(url, {method: 'POST', body: formData})
+const labelFetch = 'Test Fetch';
+console.time(labelFetch);
+fetch(fetchUrl, {method: 'POST', body: fetchData})
     .then(data => data.json())
     .then(data => {
-        console.timeEnd(label);
+        console.timeEnd(labelFetch);
+
+        const imgArr = data.ps.map(img => `<a href="${host}/work/${img.ip}" target="_blank"><img src="${img.iu}"></a>`);
+        const imgHtml = imgArr.reduce((html, img) => `${html}<br>${img}`);
 
         const labelHtml = 'labelHtml';
         console.time(labelHtml);
-        
-        const imgArr = data.ps.map(img => `<img src="${img.iu}">`);
-        const imgHtml = imgArr.reduce((html, img) => `${html}<br>${img}`);
-        
         document.getElementById('imgHtml').innerHTML = imgHtml;
         console.timeEnd(labelHtml);
     });
