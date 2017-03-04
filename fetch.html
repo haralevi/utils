@@ -21,8 +21,14 @@
 <script>
 const label = 'Test Fetch';
 console.time(label);
+
 const url = 'http://api.flickr.com/services/rest/';
-fetch(url, {method: 'GET'})
+var formData = new FormData();
+formData.append('rate', 1);
+formData.append('range', 7);
+formData.append('page', 1);
+    
+fetch(url, {method: 'POST', body: formData})
     .then(data => data.json())
     .then(data => {
         console.timeEnd(label);
