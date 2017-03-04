@@ -29,7 +29,7 @@ fetchData.append('rate', 1);
 fetchData.append('range', 7);
 fetchData.append('page', 1);
 
-const labelFetch = 'Test Fetch';
+const labelFetch = 'labelFetch';
 console.time(labelFetch);
 fetch(fetchUrl, {method: 'POST', body: fetchData})
     .then(data => data.json())
