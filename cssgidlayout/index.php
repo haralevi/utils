@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>CSS Grig</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+<link rel="stylesheet" href="style.css">
+<!--[if lt IE 9]>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+<![endif]-->
+</head>
+<body>
+
+<header class="header">
+	<div>Header</div>
+</header>
+
+<grid class="grid">
+	<nav class="nav">
+		<div>Nav</div>
+	</nav>
+	<main class="main">
+		<div>Main</div>
+	</main>
+	<aside class="aside">
+		<div>Aside</div>
+	</aside>
+</grid>
+
+<footer class="footer">
+	<div>Footer</div>
+</footer>
+
+</body>
+</html>

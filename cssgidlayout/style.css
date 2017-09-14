@@ -1,0 +1,90 @@
+body {
+	margin: 0;
+	padding: 10px;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-size: 1em;
+	line-height: 1.3;
+	background-color: #dfdfdf;
+	color: #fff;
+}
+
+header, grid, main, nav, aside, footer {
+	display: block;
+	min-height: 60px;
+}
+
+header, main, nav, aside, footer {
+	box-shadow: 3px 3px 6px 0 rgba(0,0,0,0.15);
+}
+
+.header, .grid, .footer {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.header, .main, .nav, .aside {
+ 	margin-bottom: 10px;
+}
+
+header > div, main > div, nav > div, aside > div, footer > div {
+	padding: 10px;
+}
+
+.header {
+	background-color: #ff9800;
+}
+
+.main {
+	background-color: #f44336;
+	height: 200px;
+	grid-area: main;
+}
+
+.nav {
+	background-color: #3f51b5;
+	grid-area: nav;
+}
+
+.aside {
+	background-color: #4caf50;
+	grid-area: aside;
+}
+
+.footer {
+	background-color: #009688;
+}
+
+/* Mobile devices */
+.grid {
+	padding: 0;
+	display: grid;
+	grid-gap: 0 10px;
+
+	grid-template-columns: 100%;
+	grid-template-rows: auto auto auto;
+	grid-template-areas: "nav"
+						 "main"
+						 "aside";
+}
+/* / Mobile devices */
+
+/* Tablet devices */
+@media (min-width: 700px) {
+	.grid {
+		grid-template-columns: 200px auto;
+		grid-template-rows: auto auto;
+		grid-template-areas: "nav main"
+							 "aside main";
+	}
+}
+/* / Tablet devices */
+
+/* Desktop devices */
+@media (min-width: 1000px) {
+	.grid {
+		grid-template-columns: 200px auto 200px;
+		grid-template-rows: 100%;
+		grid-template-areas: "nav main aside";
+	}
+}
+/* / Desktop devices */
