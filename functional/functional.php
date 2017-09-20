@@ -10,41 +10,40 @@
 
 <script>
 	const root = document.getElementById("root");
-	
-    const log = o => console.log(o);
 
-    const map = fn => array => array.map(fn);
-    const multiply = x => y => x * y;
-    const pluck = key => object => object[key];
+	const log = o => console.log(o);
 
-    const discount = multiply(0.98);
-    const tax = multiply(1.0925);
+	const map = fn => array => array.map(fn);
+	const multiply = x => y => x * y;
+	const pluck = key => object => object[key];
 
-    const url = 'prices.php';
+	const discount = multiply(0.98);
+	const tax = multiply(1.0925);
 
-    const request = defaults => async options => {
-        options = Object.assign({}, defaults, options);
-        const resp = await fetch(options.url, options.headers);
+	const url = 'prices.php';
+
+	const request = defaults => async options => {
+		options = Object.assign({}, defaults, options);
+		const resp = await fetch(options.url, options.headers);
 		return resp.json();
-    };
+	};
 
-    const customRequest = request({
-    	headers: {
-    		'method': 'POST',
-    		'X-Custom': 'mykey'
-    	}
-    });
+	const customRequest = request({
+		headers: {
+			'method': 'POST',
+			'X-Custom': 'mykey'
+		}
+	});
 
-    const resp = customRequest({ url: url });
-    
-    resp.then(map(pluck('price')))
+	const resp = customRequest({ url: url });
+
+	resp.then(map(pluck('price')))
 		.then(map(discount))
 		.then(map(tax))
 		.then(prices => printPrices(prices));
-   	
-	const printPrices = (prices) => {
 		
-		prices.map((price) => {
+	const printPrices = prices => {
+		prices.map(price => {
 			const p = document.createElement("p");
 			const t = document.createTextNode(price.toFixed(3));
 			p.appendChild(t);
@@ -52,7 +51,7 @@
 		});
 	};
 
-    log('ok');
+	log('ok');
 </script>
 </body>
 </html>
