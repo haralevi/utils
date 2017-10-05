@@ -14,18 +14,16 @@ function printArr($arr)
 
 function openFile($file)
 {
+    $_fp = false;
     try {
         if ((file_exists($file)) === false)
             throw new Exception('Error, file "' . $file . '" not found');
-
         if (($_fp = fopen($file, "r")) === false)
-            throw new Exception('Error, file "' . $file . '" open failed.');
+            throw new Exception('Error, file "' . $file . '" open failed');
     } catch (\Exception $e) {
-        $_fp = false;
         echox('<div style="color :red;">' . $e->getMessage() . '</div>');
         printArr($e);
     }
-
     return $_fp;
 }
 
