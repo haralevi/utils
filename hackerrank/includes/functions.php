@@ -15,13 +15,11 @@ function printArr($arr)
 function openFile($file)
 {
     try {
-        if (!file_exists($file)) {
+        if ((file_exists($file)) === false)
             throw new Exception('Error, file "' . $file . '" not found');
-        }
 
-        if (!$_fp = fopen($file, "r")) {
+        if (($_fp = fopen($file, "r")) === false)
             throw new Exception('Error, file "' . $file . '" open failed.');
-        }
     } catch (\Exception $e) {
         $_fp = false;
         echox('<div style="color :red;">' . $e->getMessage() . '</div>');
@@ -33,7 +31,7 @@ function openFile($file)
 
 function testOutput($output, $output_file)
 {
-    if ($_fp = openFile($output_file)) {
+    if (($_fp = openFile($output_file)) !== false) {
         $expected = '';
         while (($line = fgets($_fp)) !== false)
             $expected .= $line;
