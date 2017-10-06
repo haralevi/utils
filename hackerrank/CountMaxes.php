@@ -35,9 +35,9 @@ class CountMaxes
             $row = 0;
             while (($line = fgets($this->_fp)) !== false) {
                 $line = trim($line);
-                if ($row++ === 0) {
+                if ($row++ === 0)
                     $maxes = explode(' ', $line);
-                } else
+                else
                     $numbers[] = $line;
             }
 
@@ -58,8 +58,6 @@ class CountMaxes
      */
     public function countMaxes($numbers, $maxes)
     {
-        sort($numbers); // Sort numbers
-
         // Build unique array with counters of numbers.
         // It will allow us to use smaller array in a nested foreach
         $numbers_cnt = array();
@@ -68,7 +66,12 @@ class CountMaxes
                 $numbers_cnt[$num] = 0;
             $numbers_cnt[$num] += 1;
         }
-        unset($numbers); // Free some memory. This big array is not needed any more
+
+        // Free some memory. This big array is not needed any more
+        unset($numbers);
+
+        // Sort numbers counters
+        ksort($numbers_cnt);
 
         // Count maxes
         $maxes_cnt = array();
