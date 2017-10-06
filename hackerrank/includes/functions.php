@@ -33,6 +33,7 @@ function testOutput($output, $output_file)
         $expected = '';
         while (($line = fgets($_fp)) !== false)
             $expected .= $line;
+        $expected = trim($expected);
         fclose($_fp);
 
         echox('<div>' . $output . '</div>');
