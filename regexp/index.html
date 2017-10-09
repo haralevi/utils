@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regexp</title>
+</head>
+<body>
+
+<script>
+const regex = /^([a-z]|[a-z][a-z\d\.\-_]*[a-z])@([a-z]|[a-z][a-z\d\.\-_]*[a-z])\.[a-z]{2,}$/gi;
+const str = `email.email@email.com`;
+let m;
+
+while ((m = regex.exec(str)) !== null) {
+    console.log(m);
+
+    // This is necessary to avoid infinite loops with zero-width matches
+    if (m.index === regex.lastIndex) {
+        regex.lastIndex++;
+    }
+
+    // The result can be accessed through the `m`-variable.
+    m.forEach((match, groupIndex) => {
+        console.log(`Found match, group ${groupIndex}: ${match}`);
+    });
+}
+</script>
+</body>
+</html>
