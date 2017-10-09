@@ -8,21 +8,20 @@
 
 <script>
 const regex = /^([a-z]|[a-z][a-z\d\.\-_]*[a-z])@([a-z]|[a-z][a-z\d\.\-_]*[a-z])\.[a-z]{2,}$/gi;
-const str = `email.email@email.com`;
-let m;
+const str = `email.email_email-email@email_email-email.email.com`;
+let match = regex.exec(str);
 
-while ((m = regex.exec(str)) !== null) {
-    console.log(m);
-
+if (match !== null) {
     // This is necessary to avoid infinite loops with zero-width matches
-    if (m.index === regex.lastIndex) {
+    if (match.index === regex.lastIndex)
         regex.lastIndex++;
-    }
 
-    // The result can be accessed through the `m`-variable.
-    m.forEach((match, groupIndex) => {
+    match.forEach((match, groupIndex) => {
         console.log(`Found match, group ${groupIndex}: ${match}`);
     });
+}
+else {
+    console.log(`Can't match '${str}' with regexp '${regex}'`);
 }
 </script>
 </body>
