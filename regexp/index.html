@@ -7,22 +7,18 @@
 <body>
 
 <script>
-const regex = /^([a-z]|[a-z][a-z\d\.\-_]*[a-z])@([a-z]|[a-z][a-z\d\.\-_]*[a-z])\.[a-z]{2,}$/gi;
-const str = `email.email_email-email@email_email-email.email.com`;
-let match = regex.exec(str);
+    const regex = /^([a-z]|[a-z][a-z\d\.\-_]*[a-z])@([a-z]|[a-z][a-z\d\.\-_]*[a-z])\.[a-z]{2,}$/gi;
+    const str = `email.email_email-email@email_email-email.email.com`;
+    let match = regex.exec(str);
 
-if (match !== null) {
-    // This is necessary to avoid infinite loops with zero-width matches
-    if (match.index === regex.lastIndex)
-        regex.lastIndex++;
-
-    match.forEach((match, groupIndex) => {
-        console.log(`Found match, group ${groupIndex}: ${match}`);
-    });
-}
-else {
-    console.log(`Can't match '${str}' with regexp '${regex}'`);
-}
+    if (match !== null) {
+        match.forEach((match, groupIndex) => {
+            console.log(`Found match, group ${groupIndex}: ${match}`);
+        });
+    }
+    else {
+        console.log(`Can't match '${str}' with regexp '${regex}'`);
+    }
 </script>
 </body>
 </html>

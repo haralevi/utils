@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>printPyramid</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script>
+    const printPyramid = (rows) => {
+        const cols = 2 * rows - 1;
+        let out = "";
+        for (let cur_row = rows; cur_row > 0; cur_row--) {
+            for (let cur_col = cols; cur_col > 0; cur_col--) {
+                if ((cols - cur_col) < (cur_row - 1) || cur_row > cur_col)
+                    out += "_";
+                else
+                    out += "x";
+            }
+            out += "\n";
+        }
+        console.log(out);
+        document.getElementById("root").innerHTML = out.replace(/\n/g, '<br>');
+    };
+
+    printPyramid(33);
+</script>
+</body>
+</html>
