@@ -9,23 +9,38 @@
 <div id="root"></div>
 
 <script>
+    const log = x => console.log(x);
+
+    const getDot = (cnt, color_step) => {
+        const color = cnt * color_step;
+        return `<span style="color: rgba(20, 100, ${color}, 1);">🔲</span>`;
+    };
+
     const printPyramid = (rows) => {
         const cols = 2 * rows - 1;
+        const color_step = Math.floor(512 / cols);
         let out = "";
         for (let cur_row = rows; cur_row > 0; cur_row--) {
+            let color_col = 0;
+            let color_dir = 1;
             for (let cur_col = cols; cur_col > 0; cur_col--) {
-                if ((cols - cur_col) < (cur_row - 1) || cur_row > cur_col)
-                    out += "_";
-                else
-                    out += "x";
+                if (cur_col === (rows - 1))
+                    color_dir = -1;
+                if ((cols - cur_col) < (cur_row - 1) || cur_row > cur_col) {
+                    out += `<span style="visibility: hidden;">🔳</span>`;
+                }
+                else {
+                    out += getDot(color_col, color_step);
+                    color_col += color_dir;
+                }
             }
             out += "\n";
         }
-        console.log(out);
-        document.getElementById("root").innerHTML = out.replace(/\n/g, '<br>');
+        document.getElementById("root").innerHTML = out.replace(/\n/g, "<br>");
+        log('ok, done!');
     };
 
-    printPyramid(33);
+    printPyramid(30);
 </script>
 </body>
 </html>
