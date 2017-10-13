@@ -7,18 +7,55 @@
 <body>
 
 <script>
+	const log = x => console.log(x);
+	
+	/*****************************************************************************************/	
     const regex = /^([a-z]|[a-z][a-z\d\.\-_]*[a-z])@([a-z]|[a-z][a-z\d\.\-_]*[a-z])\.[a-z]{2,}$/gi;
     const str = `email.email_email-email@email_email-email.email.com`;
     let match = regex.exec(str);
 
     if (match !== null) {
         match.forEach((match, groupIndex) => {
-            console.log(`Found match, group ${groupIndex}: ${match}`);
+            log(`Found match, group ${groupIndex}: ${match}`);
         });
     }
     else {
-        console.log(`Can't match '${str}' with regexp '${regex}'`);
+        log(`Can't match '${str}' with regexp '${regex}'`);
     }
+
+    /*****************************************************************************************/
+	let res;
+	const filterNumbers = arr => arr.filter(element => typeof element === 'number');
+	const sumOnlyNumbers = (...args) => {
+		const numbers = filterNumbers(args);
+		return numbers.reduce((sum, element) => sum + element)
+	};
+	res = sumOnlyNumbers(1, 'Hello', 5, false);
+	log(res);
+
+	/*****************************************************************************************/
+	const filterByType = (type, ...items) => items.filter(item => typeof item === type);
+	res = filterByType('boolean', true, 0, false);        // => [true, false]  
+	log(res);
+	res= filterByType('number', false, 4, 'Welcome', 7); // => [4, 7]
+	log(res);
+
+	/*****************************************************************************************/
+	class King {
+		constructor(name, country) {
+			this.name = name;
+			this.country = country;     
+		}
+		getDescription() {
+			return `${this.name} leads ${this.country}`;
+		}
+	}
+	let details = ['Alexander the Great', 'Greece'];
+	let Alexander = new King(...details);
+	res = Alexander.getDescription(); // => 'Alexander the Great leads Greece' 
+	log(res);
+
+	/*****************************************************************************************/
 </script>
 </body>
 </html>
