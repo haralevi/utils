@@ -3,24 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>printPyramid</title>
-    <style type="text/css">
-    	body {line-height: 0.9;}
-    </style>
 </head>
 <body>
-
-<div id="root"></div>
-
 <script>
-	const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-	const getDot = color_col => `<span style="color: rgba(${rgb_r}, ${rgb_g}, ${color_col * color_step}, 1);">🔲</span>`;
-
+    document.getElementsByTagName('body')[0].innerHTML = '<div id="root" style="font:1rem/0.9 sans-serif;text-align:left;"></div>';
+    const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const getDot = color_col => `<span style="color:rgba(${rgb_r},${rgb_g},${color_col * color_step},1);">🔲</span>`;
     const printPyramid = rows => {
         const cols = 2 * rows - 1;
         color_step = Math.floor(512 / cols);
         rgb_r = getRandomInt(0, 255);
-		rgb_g = getRandomInt(0, 255);
+        rgb_g = getRandomInt(0, 255);
         let out = "";
         for (let cur_row = rows; cur_row > 0; cur_row--) {
             let color_col = 0;
@@ -29,22 +22,21 @@
                 if (cur_col === (rows - 1))
                     color_dir = -1;
                 if ((cols - cur_col) < (cur_row - 1))
-                    out += `<span style="visibility: hidden;">🔳</span>`;
+                    out += `<span style="visibility:hidden;">🔳</span>`;
                 else if (cur_row > cur_col)
-                	break;
+                    break;
                 else {
-            		out += getDot(color_col);
-                	color_col += color_dir;
+                    out += getDot(color_col);
+                    color_col += color_dir;
                 }
             }
             out += "\n";
         }
         document.getElementById("root").innerHTML = out.replace(/\n/g, "<br>");
     };
-
-	let rgb_r = 0, rgb_g = 0, color_step = 0;
+    let rgb_r = 0, rgb_g = 0, color_step = 0;
     const rows = 30;
-	printPyramid(rows);
+    printPyramid(rows);
     setInterval(() => printPyramid(rows), 1000);
 </script>
 </body>
